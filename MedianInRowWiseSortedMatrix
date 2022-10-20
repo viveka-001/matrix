@@ -1,0 +1,53 @@
+import java.util.*;
+
+public class Main
+{
+    static int counrSmallerThanEqualtoMid(int []mat,int mid)
+    {
+        int l=0;int h=mat.length-1;
+       
+        while(l<=h)
+        {
+            int md=l+(h-l)/2;
+            if(mat[md]<=mid)
+            {
+                l=md+1;
+            }
+            else
+            {
+                h=md-1;
+            }
+        }
+        return l;
+    }
+	public static void main(String[] args) {
+		Scanner sc=new Scanner(System.in);
+		int n=sc.nextInt();
+		int mat[][]=new int[n][n];
+		for(int i=0;i<n;i++)
+		{
+		    for(int j=0;j<n;j++)
+		    {
+		        mat[i][j]=sc.nextInt();
+		    }
+		}
+		int low=1;//keeping low to 1;
+		int high=Integer.MAX_VALUE;
+		int k=mat.length;
+		while(low<=high)
+		{
+		    int mid=low+(high-low)/2;
+		    int cnt=0;
+		    for(int i=0;i<k;i++)
+		    {
+		        cnt+=counrSmallerThanEqualtoMid(mat[i],mid);
+		        
+		    }
+		  
+		    if(cnt<=(n*n)/2)low=mid+1;
+		    else high=mid-1;
+		}
+			System.out.println(low);
+	}
+
+}
